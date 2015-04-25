@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Zupanije_array">
+        
+           <item> I ZAGREBAČKA  </item>
+  <item>II KRAPINSKO-ZAGORSKA</item>
+  <item>III SISAČKO-MOSLAVAČKA</item>
+  <item>IV KARLOVAČKA</item>
+  <item>V VARAŽDINSKA</item>
+  <item>VI KOPRIVNIČKO-KRIŽEVAČKA</item>
+  <item>VII BJELOVARSKO-BILOGORSKA</item>
+  <item>VIII PRIMORSKO-GORANSKA</item>
+  <item>IX LIČKO-SENJSKA</item>
+  <item>  X VIROVITIČKO-PODRAVSKA</item>
+  <item>XI POŽEŠKO-SLAVONSKA</item>
+  <item>XII BRODSKO-POSAVSKA</item>
+  <item>XIII ZADARSKA</item>
+  <item>XIV OSJEČKO-BARANJSKA</item>
+  <item>XV ŠIBENSKO-KNINSKA</item>
+  <item>XVI VUKOVARSKO-SRIJEMSKA</item>
+  <item>XVII SPLITSKO-DALMATINSKA</item>
+  <item>XVIII ISTARSKA</item>
+  <item>XIX DUBROVAČKO-NERETVANSKA</item>
+  <item>XX MEĐIMURSKA</item>
+  <item>XXI GRAD ZAGREB</item>
+        
+    </string-array>
+
+        <string-array name="Podrucja_array">
+        
+
+
+  <item>POLJOPRIVREDA, PREHRANA, VETERINA</item>
+  <item>ŠUMARSTVO I DRVNA TEHNOLOGIJA</item>
+  <item>GEOLOGIJA, RUDARSTVO, NAFTA I KEMIJSKA TEHNOLOGIJA</item>
+  <item>TEKSTIL I KOŽA</item>
+  <item>GRAFIČKA TEHNOLOGIJA I AUDIOVIZUALNA TEHNOLOGIJA</item>
+  <item>STROJARSTVO, BRODOGRADNJA, METALURGIJA</item>
+  <item>ELEKTROTEHNIKA I RAČUNARSTVO</item>
+  <item>GRADITELJSTVO I GEODEZIJA</item>
+  <item>EKONOMIJA, TRGOVINA I POSLOVNA ADMINISTRACIJA</item>
+  <item>TURIZAM I UGOSTITELJSTVO</item>
+  <item>PROMET I LOGISTIKA</item>
+  <item>ZDRAVSTVO I SOCIJALNA SKRB</item>
+  <item>OSOBNE I DRUGE USLUGE</item>
+  <item>UMJETNOST</item>
+  <item>MATEMATIKA, FIZIKA, GEOZNANOSTI, KEMIJA, BIOLOGIJA</item>
+  <item>TEMELJNE TEHNIČKE ZNANOSTI</item>
+  <item>ZRAKOPLOVSTVO, RAKETNA I SVEMIRSKA TEHNOLOGIJA</item>
+  <item>INFORMACIJE I KOMUNIKACIJE</item>
+  <item>PRAVO, POLITOLOGIJA, DRŽAVNA UPRAVA I JAVNI POSLOVI</item>
+  <item>SOCIOLOGIJA, PSIHOLOGIJA, EDUKACIJSKO-REHABILITACIJSKE ZNANOSTI, LOGOPEDIJA, DEMOGRAFIJA</item>
+  <item>ODGOJ, OBRAZOVANJE I ŠPORT</item>
+  <item>FILOZOFIJA, TEOLOGIJA, RELIGIJSKE ZNANOSTI, ANTROPOLOGIJA</item>
+  <item>POVIJEST, ZNANOST O UMJETNOSTI, ARHEOLOGIJA, ETNOLOGIJA</item>
+  <item>SIGURNOST, OBRANA I ZAŠTITA</item>
+  <item>FILOLOGIJA</item>
+  <item>INTERDISCIPLINARNA ZNANOST I OSTALO</item>
+        
+    </string-array>
+</resources>

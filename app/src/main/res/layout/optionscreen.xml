@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical" >
+
+        <Spinner
+            android:id="@+id/spinnerlokacija"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:entries="@array/Zupanije_array"
+             />
+
+        <Spinner
+            android:id="@+id/spinnerpodrucje"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" 
+            android:entries="@array/Podrucja_array"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewTagTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Tags"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayoutLeftTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayoutRightTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/searchLinearLayout"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/buttonSearchButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:text="Search"
+            android:visibility="visible"
+            android:layout_weight="0.5" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Create filter"
+            android:id="@+id/buttonCreateFilter"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.5"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/filterLinearLayout"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/editTextCreate" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text="Cancel"
+                android:id="@+id/buttonCancelFilter"
+                android:layout_weight="1" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text="Add"
+                android:id="@+id/buttonAddFilter"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:singleLine="false"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
