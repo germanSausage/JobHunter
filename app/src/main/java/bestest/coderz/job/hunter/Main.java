@@ -1,6 +1,7 @@
 package bestest.coderz.job.hunter;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import bestest.coderz.job.hunter.R.id;
@@ -19,6 +21,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
     String podrucje="empty";
     String lokacija="empty";
     String tagovi;
+    ArrayList<Oglas> oglList;
     Options options=new Options();
     Oglasi oglasi=new Oglasi();
 
@@ -65,7 +68,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
     {
       ViewPager newViewPager=(ViewPager)findViewById(id.pager);
         newViewPager.setCurrentItem(1);
-        oglasi.setter(podrucje,lokacija,tagovi);
+        oglasi.setter(podrucje,lokacija,tagovi,oglList);
 
     }
 	private ArrayList<Fragment> fragments()
@@ -116,9 +119,30 @@ public class Main extends FragmentActivity implements Options.chaplin{
 		// automatically handle clicks on the Home/Up button, so long
 		// oglasi you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+
+
+    }
+    @SuppressWarnings("UnusedDeclaration")
+    private class GetAdds extends AsyncTask<ArrayList<TAG>,Integer ,ArrayList<Oglas>>
+    {
+        @SafeVarargs
+        @Override
+        protected final ArrayList<Oglas> doInBackground(ArrayList<TAG>... params) {
+
+           oglasi.hideShow(0);
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Oglas> oglasi) {
+            super.onPostExecute(oglasi);
+        }
+    }
 }

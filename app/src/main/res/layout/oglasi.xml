@@ -5,6 +5,12 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,13 +22,14 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:id="@+id/oglasListHideShow">
 
         <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/listViewoglasi"
-            android:layout_gravity="bottom"
-            android:layout_weight="1" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listViewOglasi"
+            android:layout_weight="1"
+            android:visibility="visible" />
     </LinearLayout>
 </LinearLayout>
