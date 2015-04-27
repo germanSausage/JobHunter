@@ -20,16 +20,17 @@ public class Oglasi extends Fragment{
     ArrayList<Oglas> oglasi;
     ProgressBar bar;
     LinearLayout hs;
+    OglasApapter adapter;
 	@Override
 	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
+
 		super.onAttach(activity);
 	}
 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
 		super.onCreate(savedInstanceState);
 	}
 
@@ -37,7 +38,8 @@ public class Oglasi extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View b=inflater.inflate(layout.oglasi, container,false);
-        OglasApapter adapter=new OglasApapter(getActivity(),oglasi);
+        oglasi=new ArrayList<>();
+         adapter=new OglasApapter(getActivity(),oglasi);
 
         ListView lw= (ListView) b.findViewById(R.id.listViewOglasi);
         lw.setAdapter(adapter);
@@ -51,24 +53,26 @@ public class Oglasi extends Fragment{
 	public void setter(String pod,String lok,String tagovi,ArrayList<Oglas> oglasi)
     {
         grab.setText(pod+"\n"+lok+"\n"+tagovi);
+        this.oglasi=oglasi;
+        adapter.notifyDataSetChanged();
     }
     public  void hideShow(int var)
     {
         if(var==0)
         {
             if(hs.getVisibility()==View.VISIBLE){
-            hs.setVisibility(View.GONE);};
+            hs.setVisibility(View.GONE);}
 
             if(bar.getVisibility()==View.GONE){
-                bar.setVisibility(View.VISIBLE);};
+                bar.setVisibility(View.VISIBLE);}
         }
         else
         {
             if(hs.getVisibility()==View.GONE){
-                hs.setVisibility(View.VISIBLE);};
+                hs.setVisibility(View.VISIBLE);}
 
             if(bar.getVisibility()==View.VISIBLE){
-                bar.setVisibility(View.GONE);};
+                bar.setVisibility(View.GONE);}
         }
     }
 

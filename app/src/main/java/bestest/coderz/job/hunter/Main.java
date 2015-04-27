@@ -11,7 +11,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import org.apache.http.HttpConnection;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import bestest.coderz.job.hunter.R.id;
@@ -128,11 +139,87 @@ public class Main extends FragmentActivity implements Options.chaplin{
     {
         @SafeVarargs
         @Override
-        protected final ArrayList<Oglas> doInBackground(ArrayList<TAG>... params) {
+        protected final ArrayList<Oglas> doInBackground(ArrayList<TAG>...  params) {
 
            oglasi.hideShow(0);
 
-            return null;
+            StringBuilder tagBuilder=new StringBuilder();
+
+            ArrayList<TAG> tempTag=params[0];
+
+            for(TAG objekt: tempTag)
+            {
+                tagBuilder.append(objekt.ime);
+            }
+
+            URL url = null;
+            try {
+                url = new URL("http://188.129.37.133/JobHunter");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            ArrayList<Oglas> returnList=new ArrayList<>();
+            try {
+               HttpURLConnection con=(HttpURLConnection)url.openConnection();
+
+               con.setRequestMethod("POST");
+               con.setDoOutput(true);
+               con.setDoInput(true);
+                con.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
+
+               DataOutputStream stream = new DataOutputStream(con.getOutputStream());
+                stream.writeUTF(tagBuilder.toString());
+                stream.flush();
+                stream.close();
+
+
+                InputStream input=con.getInputStream();
+                BufferedReader reader=new BufferedReader(new InputStreamReader(input));
+
+                StringBuilder buider=new StringBuilder();
+                String line;
+                while((line=reader.readLine())!=null)
+                {
+                    buider.append(line);
+                }
+                reader.close();
+
+
+                JSONObject jobjekt= new JSONObject(line);
+
+                JSONArray jarray=jobjekt.getJSONArray("oglasi");
+
+
+
+
+/*
+* String naslov,
+            String opisPosla,
+            String tvtrka,
+            String podrucje,
+            String tagovi,
+            String pbrMjesto,
+            String izvor,
+            String zupanija
+*
+*
+*
+*
+* */
+                for(int i=0;i< jarray.length();i++)
+                {
+                    JSONObject tmpObjekt=jarray.getJSONObject(i);
+                    Oglas tmpOglas=new Oglas(tmpObjekt.getString("naslov"),tmpObjekt.getString("opisPosla"),tmpObjekt.getString("tvtrka"),tmpObjekt.getString("podrucje"),tmpObjekt.getString("tagovi"),tmpObjekt.getString("pbrMjesto"),tmpObjekt.getString("izvor"),tmpObjekt.getString("zupanija"));
+                    returnList.add(tmpOglas);
+
+                }
+
+           }
+           catch (Exception e){}
+
+
+            return returnList;
         }
 
         @Override
@@ -141,8 +228,12 @@ public class Main extends FragmentActivity implements Options.chaplin{
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Oglas> oglasi) {
-            super.onPostExecute(oglasi);
+        protected void onPostExecute(ArrayList<Oglas> oglasitmp) {
+
+            oglasi.setter("","","",oglasitmp);
+
+            super.onPostExecute(oglasitmp);
+           oglasi.hideShow(1);
         }
     }
 }
