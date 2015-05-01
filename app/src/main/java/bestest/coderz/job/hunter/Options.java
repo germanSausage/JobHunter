@@ -70,13 +70,13 @@ public class Options extends Fragment{
         final Button add= (Button) c.findViewById(R.id.buttonAddFilter);
 
         final EditText edt= (EditText) c.findViewById(R.id.editTextCreate);
-
+        final EditText adresa= (EditText) c.findViewById(R.id.address);
 
         podrucje.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ArrayList<TAG> tmp=null;
-                tmp=db.getAll(position);
+                tmp=db.getAll(position+1);
 
                 sendingInt=position;
 
@@ -158,8 +158,9 @@ public class Options extends Fragment{
 
                     }
                 }
-                m.comeWithMeIfYouWantToLive(podrucje.getSelectedItem().toString(),lokacija.getSelectedItem().toString(),selected.toString());
-                m.fff();
+                m.comeWithMeIfYouWantToLive(podrucje.getSelectedItem().toString(),lokacija.getSelectedItem().toString(),selected.toString(),adresa.getText().toString());
+                m.fff(selected.toString(),Integer.toString(podrucje.getSelectedItemPosition()+1),Integer.toString(lokacija.getSelectedItemPosition()+1));
+
             }
         });
 
@@ -214,7 +215,7 @@ public class Options extends Fragment{
 
     public interface chaplin
     {
-        public void comeWithMeIfYouWantToLive(String podrucje,String lokacija,String tagovi);
+        public void comeWithMeIfYouWantToLive(String podrucje,String lokacija,String tagovi,String adresa);
     }
 	
 	public static ArrayList<ToggleButton> getTagList()

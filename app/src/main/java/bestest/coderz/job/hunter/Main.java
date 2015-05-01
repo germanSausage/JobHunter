@@ -7,15 +7,24 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import org.apache.http.HttpConnection;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,6 +33,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.NavigableMap;
 
 import bestest.coderz.job.hunter.R.id;
 
@@ -32,7 +43,8 @@ public class Main extends FragmentActivity implements Options.chaplin{
     String podrucje="empty";
     String lokacija="empty";
     String tagovi;
-    ArrayList<Oglas> oglList;
+    String adresa;
+    ArrayList<Oglas> oglList=new ArrayList<>();
     Options options=new Options();
     Oglasi oglasi=new Oglasi();
 
@@ -54,14 +66,18 @@ public class Main extends FragmentActivity implements Options.chaplin{
         if (!db.checkDatabase()) {
             ArrayList<TAG> temp=new ArrayList<>();
 
-            temp.add(new TAG("Java",6));
-            temp.add(new TAG("C",6));
-            temp.add(new TAG("C++",6));
-            temp.add(new TAG("Perl",6));
-            temp.add(new TAG("Konobar/ica",9));
-            temp.add(new TAG("Kuhar/ica",9));
-            temp.add(new TAG("Čišćenje",9));
-            temp.add(new TAG("Phyton",6)); temp.add(new TAG("Android",7));
+            temp.add(new TAG("Java",1));
+
+            temp.add(new TAG("C++",1));
+            temp.add(new TAG("Perl",1));
+            temp.add(new TAG("Konobar/ica",26));
+            temp.add(new TAG("Kuhar/ica",26));
+            temp.add(new TAG("Čišćenje",26));
+            temp.add(new TAG("Python",1));
+            temp.add(new TAG("Android",1));
+            temp.add(new TAG("ASP.NET",1));
+            temp.add(new TAG("HTML",1));
+            temp.add(new TAG("CSS",1));
             db.insertData(temp);
             Toast.makeText(this, temp.get(0).ime, Toast.LENGTH_SHORT).show();
             Toast.makeText(this,"Base created.",Toast.LENGTH_SHORT).show();
@@ -71,15 +87,17 @@ public class Main extends FragmentActivity implements Options.chaplin{
         }
     }
 
-    public void comeWithMeIfYouWantToLive(String podrucje,String lokacija,String tagovi)
+    public void comeWithMeIfYouWantToLive(String podrucje,String lokacija,String tagovi,String adresa)
     {
-        this.podrucje=podrucje;this.lokacija=lokacija;this.tagovi=tagovi;
+        this.podrucje=podrucje;this.lokacija=lokacija;this.tagovi=tagovi;this.adresa=adresa;
     }
-    public void fff()
+    public void fff(String tmp,String tmpPodrucje,String tmpLokacija)
     {
       ViewPager newViewPager=(ViewPager)findViewById(id.pager);
         newViewPager.setCurrentItem(1);
         oglasi.setter(podrucje,lokacija,tagovi,oglList);
+        new GetAdds().execute(tmp,tmpPodrucje,tmpLokacija);
+        oglasi.hideShow(0);
 
     }
 	private ArrayList<Fragment> fragments()
@@ -135,46 +153,35 @@ public class Main extends FragmentActivity implements Options.chaplin{
 
     }
     @SuppressWarnings("UnusedDeclaration")
-    private class GetAdds extends AsyncTask<ArrayList<TAG>,Integer ,ArrayList<Oglas>>
+    private class GetAdds extends AsyncTask<String,Integer ,ArrayList<Oglas>>
     {
         @SafeVarargs
         @Override
-        protected final ArrayList<Oglas> doInBackground(ArrayList<TAG>...  params) {
+        protected final ArrayList<Oglas> doInBackground(String...  params) {
 
-           oglasi.hideShow(0);
 
-            StringBuilder tagBuilder=new StringBuilder();
-
-            ArrayList<TAG> tempTag=params[0];
-
-            for(TAG objekt: tempTag)
-            {
-                tagBuilder.append(objekt.ime);
-            }
-
-            URL url = null;
-            try {
-                url = new URL("http://188.129.37.133/JobHunter");
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
 
             ArrayList<Oglas> returnList=new ArrayList<>();
+
+
             try {
-               HttpURLConnection con=(HttpURLConnection)url.openConnection();
-
-               con.setRequestMethod("POST");
-               con.setDoOutput(true);
-               con.setDoInput(true);
-                con.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
-
-               DataOutputStream stream = new DataOutputStream(con.getOutputStream());
-                stream.writeUTF(tagBuilder.toString());
-                stream.flush();
-                stream.close();
+                HttpClient client= new DefaultHttpClient();
+                HttpPost post=new HttpPost("http://"+adresa+":8080/db/getAds");
 
 
-                InputStream input=con.getInputStream();
+
+
+
+                List<NameValuePair> pair=new ArrayList<NameValuePair>(2);
+                pair.add(new BasicNameValuePair("tags",params[0]));
+                pair.add(new BasicNameValuePair("podrucje",params[1]));
+                pair.add(new BasicNameValuePair("lokacija",params[2]));
+
+                post.setEntity(new UrlEncodedFormEntity(pair));
+
+                HttpResponse response=client.execute(post);
+
+                InputStream input=response.getEntity().getContent();
                 BufferedReader reader=new BufferedReader(new InputStreamReader(input));
 
                 StringBuilder buider=new StringBuilder();
@@ -185,38 +192,24 @@ public class Main extends FragmentActivity implements Options.chaplin{
                 }
                 reader.close();
 
+                Log.d("sadrzaj buffera", buider.toString());
 
-                JSONObject jobjekt= new JSONObject(line);
+                JSONObject jobjekt= new JSONObject(buider.toString());
 
                 JSONArray jarray=jobjekt.getJSONArray("oglasi");
 
-
-
-
-/*
-* String naslov,
-            String opisPosla,
-            String tvtrka,
-            String podrucje,
-            String tagovi,
-            String pbrMjesto,
-            String izvor,
-            String zupanija
-*
-*
-*
-*
-* */
-                for(int i=0;i< jarray.length();i++)
+                for(int i=0;i<jarray.length();i++)
                 {
-                    JSONObject tmpObjekt=jarray.getJSONObject(i);
-                    Oglas tmpOglas=new Oglas(tmpObjekt.getString("naslov"),tmpObjekt.getString("opisPosla"),tmpObjekt.getString("tvtrka"),tmpObjekt.getString("podrucje"),tmpObjekt.getString("tagovi"),tmpObjekt.getString("pbrMjesto"),tmpObjekt.getString("izvor"),tmpObjekt.getString("zupanija"));
-                    returnList.add(tmpOglas);
-
+                    JSONObject rec = jarray.getJSONObject(i);
+                    returnList.add(new Oglas(rec.getString("naslov"),"","",rec.getString("opis"),rec.getString("tags"),"","",""));
                 }
 
+
+
+
+
            }
-           catch (Exception e){}
+           catch (Exception e){e.getStackTrace();e.getMessage();e.printStackTrace();}
 
 
             return returnList;
@@ -232,8 +225,8 @@ public class Main extends FragmentActivity implements Options.chaplin{
 
             oglasi.setter("","","",oglasitmp);
 
-            super.onPostExecute(oglasitmp);
-           oglasi.hideShow(1);
+
+
         }
     }
 }

@@ -3,6 +3,7 @@ package bestest.coderz.job.hunter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import bestest.coderz.job.hunter.R.layout;
 
 public class Oglasi extends Fragment{
     TextView grab;
-    ArrayList<Oglas> oglasi;
+    ArrayList<Oglas> ogl =new ArrayList<>();
     ProgressBar bar;
     LinearLayout hs;
     OglasApapter adapter;
@@ -38,8 +39,8 @@ public class Oglasi extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View b=inflater.inflate(layout.oglasi, container,false);
-        oglasi=new ArrayList<>();
-         adapter=new OglasApapter(getActivity(),oglasi);
+
+         adapter=new OglasApapter(getActivity(),ogl);
 
         ListView lw= (ListView) b.findViewById(R.id.listViewOglasi);
         lw.setAdapter(adapter);
@@ -50,29 +51,40 @@ public class Oglasi extends Fragment{
 		return b;
 	}
 	
-	public void setter(String pod,String lok,String tagovi,ArrayList<Oglas> oglasi)
+	public void setter(String pod,String lok,String tagovi,ArrayList<Oglas> array)
     {
         grab.setText(pod+"\n"+lok+"\n"+tagovi);
-        this.oglasi=oglasi;
+
+        this.ogl.clear();
+        for(Oglas oglas:array)
+        {
+            this.ogl.add(oglas);
+            Log.d("sadrzaj pola", oglas.naslov);
+        }
+        if (tagovi.equals(""))
+        {
+            hideShow(1);
+        }
+        Log.d("sadrzaj pola", Integer.toString(array.size()));
         adapter.notifyDataSetChanged();
     }
     public  void hideShow(int var)
     {
         if(var==0)
         {
-            if(hs.getVisibility()==View.VISIBLE){
-            hs.setVisibility(View.GONE);}
 
-            if(bar.getVisibility()==View.GONE){
-                bar.setVisibility(View.VISIBLE);}
+            hs.setVisibility(View.GONE);
+
+
+                bar.setVisibility(View.VISIBLE);
         }
         else
         {
-            if(hs.getVisibility()==View.GONE){
-                hs.setVisibility(View.VISIBLE);}
 
-            if(bar.getVisibility()==View.VISIBLE){
-                bar.setVisibility(View.GONE);}
+                hs.setVisibility(View.VISIBLE);
+
+
+                bar.setVisibility(View.GONE);
         }
     }
 
