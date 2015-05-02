@@ -40,7 +40,7 @@ public class Oglasi extends Fragment{
 			Bundle savedInstanceState) {
 		View b=inflater.inflate(layout.oglasi, container,false);
 
-         adapter=new OglasApapter(getActivity(),ogl);
+        adapter=new OglasApapter(getActivity(),ogl);
 
         ListView lw= (ListView) b.findViewById(R.id.listViewOglasi);
         lw.setAdapter(adapter);
@@ -59,7 +59,7 @@ public class Oglasi extends Fragment{
         for(Oglas oglas:array)
         {
             this.ogl.add(oglas);
-            Log.d("sadrzaj pola", oglas.naslov);
+            Log.d("sadrzaj poola", oglas.naslov);
         }
         if (tagovi.equals(""))
         {

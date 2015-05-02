@@ -9,6 +9,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Naslov"
         android:id="@+id/textViewOglasNaslov"
+        android:textColor="@color/primary_text_material"
         android:gravity="center_horizontal" />
 
     <TextView
@@ -16,19 +17,22 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Opis"
-        android:id="@+id/textViewOglasOpis" />
+        android:id="@+id/textViewOglasOpis"
+        android:textColor="@color/white_material"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Tvrtka"
-        android:id="@+id/textViewOglasTvrtka" />
+        android:id="@+id/textViewOglasTvrtka"
+        android:textColor="@color/white_material"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Izvor"
-        android:id="@+id/textViewOglasIzvor" />
+        android:id="@+id/textViewOglasIzvor"
+        android:textColor="@color/white_material"/>
 </LinearLayout>

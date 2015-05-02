@@ -1,6 +1,8 @@
 package bestest.coderz.job.hunter;
 
 
+import android.app.ActionBar;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.apache.http.HttpConnection;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -24,17 +25,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.Console;
-import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NavigableMap;
 
 import bestest.coderz.job.hunter.R.id;
 
@@ -85,12 +79,19 @@ public class Main extends FragmentActivity implements Options.chaplin{
         } else {
             Toast.makeText(this, "Base already exists,no need for another one.", Toast.LENGTH_SHORT).show();
         }
+
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+
     }
 
     public void comeWithMeIfYouWantToLive(String podrucje,String lokacija,String tagovi,String adresa)
     {
         this.podrucje=podrucje;this.lokacija=lokacija;this.tagovi=tagovi;this.adresa=adresa;
     }
+
     public void fff(String tmp,String tmpPodrucje,String tmpLokacija)
     {
       ViewPager newViewPager=(ViewPager)findViewById(id.pager);
@@ -100,6 +101,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
         oglasi.hideShow(0);
 
     }
+
 	private ArrayList<Fragment> fragments()
 	{
 
@@ -110,9 +112,6 @@ public class Main extends FragmentActivity implements Options.chaplin{
 
 
 		return tempFragmentList;
-
-		
-		
 	}
 
 	private class PagerAdapter extends FragmentPagerAdapter
@@ -147,11 +146,23 @@ public class Main extends FragmentActivity implements Options.chaplin{
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// oglasi you specify a parent activity in AndroidManifest.xml.
+
 		int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
+        switch (item.getItemId()){
+            case android.R.id.home:
+                Intent intent = new Intent(this,Main.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
 
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+       // return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
+
     @SuppressWarnings("UnusedDeclaration")
     private class GetAdds extends AsyncTask<String,Integer ,ArrayList<Oglas>>
     {
