@@ -43,34 +43,35 @@ public final class R {
         public static final int toggle_selector=0x7f020002;
     }
     public static final class id {
-        public static final int LinearLayoutLeftTag=0x7f0a0012;
-        public static final int LinearLayoutRightTag=0x7f0a0013;
-        public static final int action_settings=0x7f0a001b;
-        public static final int address=0x7f0a000d;
-        public static final int buttonAddFilter=0x7f0a001a;
-        public static final int buttonCancelFilter=0x7f0a0019;
-        public static final int buttonCreateFilter=0x7f0a0016;
-        public static final int buttonSearchButton=0x7f0a0015;
-        public static final int editTextCreate=0x7f0a0018;
-        public static final int filterLinearLayout=0x7f0a0017;
+        public static final int LinearLayoutLeftTag=0x7f0a0013;
+        public static final int LinearLayoutRightTag=0x7f0a0014;
+        public static final int action_settings=0x7f0a001c;
+        public static final int address=0x7f0a000e;
+        public static final int buttonAddFilter=0x7f0a001b;
+        public static final int buttonCancelFilter=0x7f0a001a;
+        public static final int buttonCreateFilter=0x7f0a0017;
+        public static final int buttonSearchButton=0x7f0a0016;
+        public static final int editTextCreate=0x7f0a0019;
+        public static final int filterLinearLayout=0x7f0a0018;
         public static final int filterTitle=0x7f0a0003;
         public static final int listViewForFilters=0x7f0a0002;
-        public static final int listViewOglasi=0x7f0a0007;
-        public static final int oglasListHideShow=0x7f0a0006;
+        public static final int listViewOglasi=0x7f0a0008;
+        public static final int oglasListHideShow=0x7f0a0007;
         public static final int pager=0x7f0a0000;
         public static final int progressBar=0x7f0a0005;
-        public static final int scrollView1=0x7f0a0011;
-        public static final int searchLinearLayout=0x7f0a0014;
+        public static final int scrollView1=0x7f0a0012;
+        public static final int searchLinearLayout=0x7f0a0015;
         public static final int smallTagList=0x7f0a0004;
-        public static final int some=0x7f0a000c;
-        public static final int spinnerlokacija=0x7f0a000e;
-        public static final int spinnerpodrucje=0x7f0a000f;
+        public static final int some=0x7f0a000d;
+        public static final int spinnerlokacija=0x7f0a000f;
+        public static final int spinnerpodrucje=0x7f0a0010;
+        public static final int textView=0x7f0a0006;
         public static final int textView2=0x7f0a0001;
-        public static final int textViewOglasIzvor=0x7f0a000b;
-        public static final int textViewOglasNaslov=0x7f0a0008;
-        public static final int textViewOglasOpis=0x7f0a0009;
-        public static final int textViewOglasTvrtka=0x7f0a000a;
-        public static final int textViewTagTitle=0x7f0a0010;
+        public static final int textViewOglasIzvor=0x7f0a000c;
+        public static final int textViewOglasNaslov=0x7f0a0009;
+        public static final int textViewOglasOpis=0x7f0a000a;
+        public static final int textViewOglasTvrtka=0x7f0a000b;
+        public static final int textViewTagTitle=0x7f0a0011;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
