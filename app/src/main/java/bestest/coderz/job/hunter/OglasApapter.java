@@ -39,7 +39,8 @@ public class OglasApapter extends ArrayAdapter<Oglas> {
 
         naslov.setText(lista.get(position).naslov);
         opis.setText(lista.get(position).opisPosla);
-
+        tvrtka.setText(lista.get(position).tvrtka);
+        izvor.setText(lista.get(position).izvor);
 
         return view;
     }

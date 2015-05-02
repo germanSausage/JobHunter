@@ -39,7 +39,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
     ArrayList<Oglas> oglList=new ArrayList<>();
     Options options=new Options();
     Oglasi oglasi=new Oglasi();
-
+    baza db;
     SetFilter filterlist=new SetFilter();
 
 
@@ -52,7 +52,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
 		ViewPager newViewPager=(ViewPager) findViewById(id.pager);
 		newViewPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
 		fragmentList=fragments();
-        baza db=new baza(this);
+        db=new baza(this);
 
 
         if (!db.checkDatabase()) {
@@ -65,6 +65,17 @@ public class Main extends FragmentActivity implements Options.chaplin{
             Toast.makeText(this, "Base already exists,no need for another one.", Toast.LENGTH_SHORT).show();
         }
 
+
+
+
+
+
+    }
+
+
+    public void populateWithFilter()
+    {
+
         if (!db.checkDatabaseForFilters())
         {
 
@@ -73,15 +84,13 @@ public class Main extends FragmentActivity implements Options.chaplin{
         }
         else
         {
-
-            Filter filter=db.getActiveFilter();
-            if(filter!=null)
-            {
-                new GetAdds().execute(filter.tagovi,Integer.toString(filter.podrucje),Integer.toString(filter.lokacija));
-                oglasi.hideShow(0);
-                Toast.makeText(this, "Postoje filteri,ime filtera je "+filter.naziv+" a tagovi koje sadrži su: "+filter.tagovi, Toast.LENGTH_SHORT).show();
-            }
-         }
+        Filter filter=db.getActiveFilter();
+        if(filter!=null)
+        {
+            new GetAdds().execute(filter.tagovi,Integer.toString(filter.podrucje),Integer.toString(filter.lokacija));
+            Toast.makeText(this, "Postoje filteri,ime filtera je "+filter.naziv+" a tagovi koje sadrži su: "+filter.tagovi, Toast.LENGTH_SHORT).show();
+        }
+        }
     }
 
     public void comeWithMeIfYouWantToLive(String podrucje,String lokacija,String tagovi,String adresa)
@@ -163,7 +172,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
 
             try {
                 HttpClient client= new DefaultHttpClient();
-                HttpPost post=new HttpPost("http://"+adresa+":8080/db/getAds");
+                HttpPost post=new HttpPost("http://http://188.129.103.15/:8080/db/getAds");
 
 
 
@@ -198,7 +207,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
                 for(int i=0;i<jarray.length();i++)
                 {
                     JSONObject rec = jarray.getJSONObject(i);
-                    returnList.add(new Oglas(rec.getString("naslov"),"","",rec.getString("opis"),rec.getString("tags"),"","",""));
+                    returnList.add(new Oglas(rec.getString("naslov"),rec.getString("opis"),rec.getString("nazivTvrtke"),"",rec.getString("tags"),"",rec.getString("izvor"),""));
                 }
 
 

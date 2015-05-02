@@ -15,7 +15,7 @@ public class baza extends SQLiteOpenHelper{
 	
 	
 	public baza(Context context) {
-		super(context, "TAG_DATABASE", null, 11);
+		super(context, "TAG_DATABASE", null, 13);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -80,6 +80,9 @@ public class baza extends SQLiteOpenHelper{
         {
 
             filter=new Filter(cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4));
+        }
+        else{
+            filter=new Filter("","",0,0);
         }
 
         db.close();
@@ -173,7 +176,7 @@ public class baza extends SQLiteOpenHelper{
         return newList;
 
     }
-    public void newFilter(Filter filter)
+    public void newFilter(Filter filter, int active)
     {
         String query; ContentValues values;
         SQLiteDatabase db=getWritableDatabase();
@@ -181,6 +184,9 @@ public class baza extends SQLiteOpenHelper{
             values=new ContentValues();
             values.put("naziv",filter.naziv);
             values.put("tagovi",filter.tagovi);
+        values.put("podrucje",filter.podrucje);
+        values.put("lokacija",filter.lokacija);
+        values.put("aktivan",active);
             db.insert("filteri",null,values);
 
 

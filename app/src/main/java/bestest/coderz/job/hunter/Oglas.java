@@ -22,7 +22,7 @@ public class Oglas {
     
     String naslov;
     String opisPosla;
-   String tvtrka;
+   String tvrtka;
     String podrucje;
     String tagovi;
     String pbrMjesto;
@@ -33,7 +33,7 @@ public class Oglas {
     public Oglas(
             String naslov,
             String opisPosla,
-            String tvtrka,
+            String tvrtka,
             String podrucje,
             String tagovi,
             String pbrMjesto,
@@ -43,7 +43,7 @@ public class Oglas {
     {
         this. naslov=naslov;
         this. opisPosla=opisPosla;
-        this. tvtrka=tvtrka;
+        this. tvrtka=tvrtka;
         this. podrucje=podrucje;
         this. tagovi=tagovi;
         this. pbrMjesto=pbrMjesto;

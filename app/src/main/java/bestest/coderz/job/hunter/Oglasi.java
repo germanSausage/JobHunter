@@ -32,15 +32,18 @@ public class Oglasi extends Fragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
-	}
+        super.onCreate(savedInstanceState);
+        Main m= (Main) getActivity();
+        m.populateWithFilter();
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View b=inflater.inflate(layout.oglasi, container,false);
 
-        adapter=new OglasApapter(getActivity(),ogl);
+            adapter=new OglasApapter(getActivity(),ogl);
+
 
         ListView lw= (ListView) b.findViewById(R.id.listViewOglasi);
         lw.setAdapter(adapter);
