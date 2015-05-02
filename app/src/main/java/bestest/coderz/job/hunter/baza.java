@@ -15,7 +15,7 @@ public class baza extends SQLiteOpenHelper{
 	
 	
 	public baza(Context context) {
-		super(context, "TAG_DATABASE", null, 7);
+		super(context, "TAG_DATABASE", null, 8);
 		// TODO Auto-generated constructor stub
 	}
 
