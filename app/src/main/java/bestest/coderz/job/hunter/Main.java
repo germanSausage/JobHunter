@@ -64,27 +64,32 @@ public class Main extends FragmentActivity implements Options.chaplin{
 
 
         if (!db.checkDatabase()) {
-            ArrayList<TAG> temp=new ArrayList<>();
 
-            temp.add(new TAG("Java",1));
+            db.insertData();
 
-            temp.add(new TAG("C++",1));
-            temp.add(new TAG("Perl",1));
-            temp.add(new TAG("Konobar/ica",26));
-            temp.add(new TAG("Kuhar/ica",26));
-            temp.add(new TAG("Čišćenje",26));
-            temp.add(new TAG("Python",1));
-            temp.add(new TAG("Android",1));
-            temp.add(new TAG("ASP.NET",1));
-            temp.add(new TAG("HTML",1));
-            temp.add(new TAG("CSS",1));
-            db.insertData(temp);
-            Toast.makeText(this, temp.get(0).ime, Toast.LENGTH_SHORT).show();
             Toast.makeText(this,"Base created.",Toast.LENGTH_SHORT).show();
 
         } else {
             Toast.makeText(this, "Base already exists,no need for another one.", Toast.LENGTH_SHORT).show();
         }
+
+        if (!db.checkDatabaseForFilters())
+        {
+
+            Toast.makeText(this,"Ne postoje filter, u nemogućnosti postaviti početne oglase.",Toast.LENGTH_SHORT).show();
+
+        }
+        else
+        {
+
+            Filter filter=db.getActiveFilter();
+            if(filter!=null)
+            {
+                new GetAdds().execute(filter.tagovi,Integer.toString(filter.podrucje),Integer.toString(filter.lokacija));
+                oglasi.hideShow(0);
+                Toast.makeText(this, "Postoje filteri,ime filtera je "+filter.naziv+" a tagovi koje sadrži su: "+filter.tagovi, Toast.LENGTH_SHORT).show();
+            }
+         }
     }
 
     public void comeWithMeIfYouWantToLive(String podrucje,String lokacija,String tagovi,String adresa)

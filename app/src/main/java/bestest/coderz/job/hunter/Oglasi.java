@@ -44,7 +44,7 @@ public class Oglasi extends Fragment{
 
         ListView lw= (ListView) b.findViewById(R.id.listViewOglasi);
         lw.setAdapter(adapter);
-         grab= (TextView) b.findViewById(R.id.textView);
+
         hs= (LinearLayout) b.findViewById(R.id.oglasListHideShow);
         bar=(ProgressBar)b.findViewById(R.id.progressBar);
 
@@ -53,7 +53,7 @@ public class Oglasi extends Fragment{
 	
 	public void setter(String pod,String lok,String tagovi,ArrayList<Oglas> array)
     {
-        grab.setText(pod+"\n"+lok+"\n"+tagovi);
+
 
         this.ogl.clear();
         for(Oglas oglas:array)

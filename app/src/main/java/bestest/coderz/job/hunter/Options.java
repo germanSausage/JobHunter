@@ -201,7 +201,7 @@ public class Options extends Fragment{
                     }
                 }
 
-                db.newFilter(new Filter(edt.getText().toString(),temp.toString()));
+                db.newFilter(new Filter(edt.getText().toString(),temp.toString(),podrucje.getSelectedItemPosition(),lokacija.getSelectedItemPosition()));
 
                 shown.setVisibility(View.VISIBLE);
                 hidden.setVisibility(View.GONE);

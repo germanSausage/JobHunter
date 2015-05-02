@@ -15,7 +15,7 @@ public class baza extends SQLiteOpenHelper{
 	
 	
 	public baza(Context context) {
-		super(context, "TAG_DATABASE", null, 8);
+		super(context, "TAG_DATABASE", null, 11);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -24,7 +24,7 @@ public class baza extends SQLiteOpenHelper{
 		
 		String query="CREATE TABLE tag(id INTEGER PRIMARY KEY,ime TEXT, podrucje INTEGER)";
 		db.execSQL(query);
-        query="CREATE TABLE filteri(id INTEGER PRIMARY KEY, naziv TEXT,tagovi TEXT)";
+        query="CREATE TABLE filteri(id INTEGER PRIMARY KEY, naziv TEXT,tagovi TEXT,podrucje INTEGER, lokacija INTEGER, aktivan INTEGER)";
         db.execSQL(query);
 	}
 
@@ -53,10 +53,70 @@ public class baza extends SQLiteOpenHelper{
         db.close();
     return coffee;
     }
-    public void insertData(ArrayList<TAG> neuro)
+    public boolean checkDatabaseForFilters()
+    {
+        boolean coffee;
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery("SELECT * FROM filteri",null);
+        if(cursor.moveToFirst())
+        {
+
+            coffee=true;
+        }
+        else
+        {
+            coffee=false;
+        }
+        db.close();
+        return coffee;
+    }
+
+    public Filter getActiveFilter()
+    {
+        Filter filter=null;
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery("SELECT * FROM filteri WHERE aktivan==1",null);
+        if(cursor.moveToFirst())
+        {
+
+            filter=new Filter(cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4));
+        }
+
+        db.close();
+        return filter;
+    }
+    public void insertData()
     {
         String query; ContentValues values;
         SQLiteDatabase db=getWritableDatabase();
+        ArrayList<TAG> neuro=new ArrayList<>();
+
+        neuro.add(new TAG("Java",1));
+
+        neuro.add(new TAG("C++",1));
+        neuro.add(new TAG("Perl",1));
+        neuro.add(new TAG("Konobar/ica",26));
+        neuro.add(new TAG("Kuhar/ica",26));
+        neuro.add(new TAG("Čišćenje",26));
+        neuro.add(new TAG("Python",1));
+        neuro.add(new TAG("Android",1));
+        neuro.add(new TAG("ASP.NET",1));
+        neuro.add(new TAG("HTML",1));
+        neuro.add(new TAG("CSS",1));
+
+        neuro.add(new TAG("Sistemski admin",1));
+        neuro.add(new TAG("Linux",1));
+        neuro.add(new TAG("Urara",21));
+        neuro.add(new TAG("Pekar",21));
+        neuro.add(new TAG("Bravar",21));
+        neuro.add(new TAG("KMljekar",21));
+        neuro.add(new TAG("Šumar",21));
+        neuro.add(new TAG("Farma",21));
+        neuro.add(new TAG("Unix",1));
+        neuro.add(new TAG("Linux",1));
+        neuro.add(new TAG("Robotika",1));
+        neuro.add(new TAG("PHP",1));
+        neuro.add(new TAG("MSA",1));
         for (int i = 0; i < neuro.size(); i++)
         {
            values=new ContentValues();
@@ -105,7 +165,7 @@ public class baza extends SQLiteOpenHelper{
         {
             do
             {
-                newList.add(new Filter(cursor.getString(1), cursor.getString(2)));
+                newList.add(new Filter(cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getInt(4)));
             }while(cursor.moveToNext());
         }
 
