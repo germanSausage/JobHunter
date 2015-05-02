@@ -1,8 +1,6 @@
 package bestest.coderz.job.hunter;
 
 
-import android.app.ActionBar;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,7 +39,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
     ArrayList<Oglas> oglList=new ArrayList<>();
     Options options=new Options();
     Oglasi oglasi=new Oglasi();
-
+    baza db;
     SetFilter filterlist=new SetFilter();
 
 
@@ -54,26 +52,13 @@ public class Main extends FragmentActivity implements Options.chaplin{
 		ViewPager newViewPager=(ViewPager) findViewById(id.pager);
 		newViewPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
 		fragmentList=fragments();
-        baza db=new baza(this);
+        db=new baza(this);
 
 
         if (!db.checkDatabase()) {
-            ArrayList<TAG> temp=new ArrayList<>();
 
-            temp.add(new TAG("Java",1));
+            db.insertData();
 
-            temp.add(new TAG("C++",1));
-            temp.add(new TAG("Perl",1));
-            temp.add(new TAG("Konobar/ica",26));
-            temp.add(new TAG("Kuhar/ica",26));
-            temp.add(new TAG("Čišćenje",26));
-            temp.add(new TAG("Python",1));
-            temp.add(new TAG("Android",1));
-            temp.add(new TAG("ASP.NET",1));
-            temp.add(new TAG("HTML",1));
-            temp.add(new TAG("CSS",1));
-            db.insertData(temp);
-            Toast.makeText(this, temp.get(0).ime, Toast.LENGTH_SHORT).show();
             Toast.makeText(this,"Base created.",Toast.LENGTH_SHORT).show();
 
         } else {
@@ -81,17 +66,37 @@ public class Main extends FragmentActivity implements Options.chaplin{
         }
 
 
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
+
+
+    }
+
+
+    public void populateWithFilter()
+    {
+
+        if (!db.checkDatabaseForFilters())
+        {
+
+            Toast.makeText(this,"Ne postoje filter, u nemogućnosti postaviti početne oglase.",Toast.LENGTH_SHORT).show();
+
+        }
+        else
+        {
+        Filter filter=db.getActiveFilter();
+        if(filter!=null)
+        {
+            new GetAdds().execute(filter.tagovi,Integer.toString(filter.podrucje),Integer.toString(filter.lokacija));
+            Toast.makeText(this, "Postoje filteri,ime filtera je "+filter.naziv+" a tagovi koje sadrži su: "+filter.tagovi, Toast.LENGTH_SHORT).show();
+        }
+        }
     }
 
     public void comeWithMeIfYouWantToLive(String podrucje,String lokacija,String tagovi,String adresa)
     {
         this.podrucje=podrucje;this.lokacija=lokacija;this.tagovi=tagovi;this.adresa=adresa;
     }
-
     public void fff(String tmp,String tmpPodrucje,String tmpLokacija)
     {
       ViewPager newViewPager=(ViewPager)findViewById(id.pager);
@@ -101,7 +106,6 @@ public class Main extends FragmentActivity implements Options.chaplin{
         oglasi.hideShow(0);
 
     }
-
 	private ArrayList<Fragment> fragments()
 	{
 
@@ -112,6 +116,9 @@ public class Main extends FragmentActivity implements Options.chaplin{
 
 
 		return tempFragmentList;
+
+		
+		
 	}
 
 	private class PagerAdapter extends FragmentPagerAdapter
@@ -146,23 +153,11 @@ public class Main extends FragmentActivity implements Options.chaplin{
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// oglasi you specify a parent activity in AndroidManifest.xml.
-
 		int id = item.getItemId();
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
-        switch (item.getItemId()){
-            case android.R.id.home:
-                Intent intent = new Intent(this,Main.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
 
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-       // return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
-
     @SuppressWarnings("UnusedDeclaration")
     private class GetAdds extends AsyncTask<String,Integer ,ArrayList<Oglas>>
     {
@@ -177,7 +172,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
 
             try {
                 HttpClient client= new DefaultHttpClient();
-                HttpPost post=new HttpPost("http://"+adresa+":8080/db/getAds");
+                HttpPost post=new HttpPost("http://http://188.129.103.15/:8080/db/getAds");
 
 
 
@@ -212,7 +207,7 @@ public class Main extends FragmentActivity implements Options.chaplin{
                 for(int i=0;i<jarray.length();i++)
                 {
                     JSONObject rec = jarray.getJSONObject(i);
-                    returnList.add(new Oglas(rec.getString("naslov"),"","",rec.getString("opis"),rec.getString("tags"),"","",""));
+                    returnList.add(new Oglas(rec.getString("naslov"),rec.getString("opis"),rec.getString("nazivTvrtke"),"",rec.getString("tags"),"",rec.getString("izvor"),""));
                 }
 
 

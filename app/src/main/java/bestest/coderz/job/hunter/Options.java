@@ -37,7 +37,8 @@ public class Options extends Fragment{
 
     @Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
+
 		super.onCreate(savedInstanceState);
 
 	}
@@ -48,7 +49,7 @@ public class Options extends Fragment{
 		// TODO Auto-generated method stub
 		final baza db=new baza(getActivity());
 		View c=inflater.inflate(layout.optionscreen, container,false);
-
+        final Main m=(Main)getActivity();
 
         final LinearLayout layoleft=(LinearLayout)c.findViewById(R.id.LinearLayoutLeftTag);
         final LinearLayout layoright=(LinearLayout)c.findViewById(R.id.LinearLayoutRightTag);
@@ -157,7 +158,7 @@ public class Options extends Fragment{
             public void onClick(View v) {
 
 
-                Main m=(Main)getActivity();
+
                 StringBuilder selected=new StringBuilder();
 
                 for(int i=0;i<toggleButtonArray.size();i++)
@@ -211,8 +212,15 @@ public class Options extends Fragment{
                     }
                 }
 
-                db.newFilter(new Filter(edt.getText().toString(),temp.toString()));
+                Filter tmp=db.getActiveFilter();
+                if(tmp.naziv.equals("") && tmp.tagovi.equals("") && tmp.lokacija==0 && tmp.podrucje==0) {
+                    db.newFilter(new Filter(edt.getText().toString(), temp.toString(), podrucje.getSelectedItemPosition(), lokacija.getSelectedItemPosition()), 1);
+                }
+                else
+                {
+                    db.newFilter(new Filter(edt.getText().toString(), temp.toString(), podrucje.getSelectedItemPosition(), lokacija.getSelectedItemPosition()), 0);
 
+                }
                 shown.setVisibility(View.VISIBLE);
                 hidden.setVisibility(View.GONE);
             }

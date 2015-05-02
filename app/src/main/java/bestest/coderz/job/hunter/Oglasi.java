@@ -32,19 +32,22 @@ public class Oglasi extends Fragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
-	}
+        super.onCreate(savedInstanceState);
+        Main m= (Main) getActivity();
+        m.populateWithFilter();
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View b=inflater.inflate(layout.oglasi, container,false);
 
-        adapter=new OglasApapter(getActivity(),ogl);
+            adapter=new OglasApapter(getActivity(),ogl);
+
 
         ListView lw= (ListView) b.findViewById(R.id.listViewOglasi);
         lw.setAdapter(adapter);
-         grab= (TextView) b.findViewById(R.id.textView);
+
         hs= (LinearLayout) b.findViewById(R.id.oglasListHideShow);
         bar=(ProgressBar)b.findViewById(R.id.progressBar);
 
@@ -53,7 +56,7 @@ public class Oglasi extends Fragment{
 	
 	public void setter(String pod,String lok,String tagovi,ArrayList<Oglas> array)
     {
-        grab.setText(pod+"\n"+lok+"\n"+tagovi);
+
 
         this.ogl.clear();
         for(Oglas oglas:array)

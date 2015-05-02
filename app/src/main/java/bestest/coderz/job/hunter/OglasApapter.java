@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by tomislav on 26.04.15..
@@ -40,7 +39,8 @@ public class OglasApapter extends ArrayAdapter<Oglas> {
 
         naslov.setText(lista.get(position).naslov);
         opis.setText(lista.get(position).opisPosla);
-
+        tvrtka.setText(lista.get(position).tvrtka);
+        izvor.setText(lista.get(position).izvor);
 
         return view;
     }
