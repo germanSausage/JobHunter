@@ -1,25 +1,20 @@
 package bestest.coderz.job.hunter;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import bestest.coderz.job.hunter.R.layout;
@@ -88,10 +83,22 @@ public class Options extends Fragment{
                 for (int i = 1; i <tmp.size()+1 ; i++) {
 
                     ToggleButton but;
+                    Drawable d = getResources().getDrawable(R.drawable.toggle_selector);
+
                     but = new ToggleButton(getActivity());
-                    but.setTextOff(tmp.get(i-1).ime);
+
+                    but.setTextOff(tmp.get(i - 1).ime);
                     but.setTextOn(tmp.get(i - 1).ime);
                     but.setText(tmp.get(i - 1).ime);
+
+                    but.setTextColor(getResources().getColor(R.color.white_material));
+                    but.setBackgroundDrawable(d);
+
+                    LinearLayout.LayoutParams mlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    mlp.setMargins(5,5,5,5);
+                    but.setLayoutParams(mlp);
+
+
                     but.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dark_green_material">#388E3C</color>
+    <color name="dark_green_light_material">#4CAF50</color>
+    <color name="amber_material">#FFC107</color>
+    <color name="primary_text_material">#212121</color>
+    <color name="light_primary_material">#C8E6C9</color>
+    <color name="white_material">#FFFFFF</color>
+    <color name="secondary_text_material">#727272</color>
+    <color name="divider_material">#B6B6B6</color>
+    <color name="blue_gray_TButton_material">#607D8B</color>
+</resources>

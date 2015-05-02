@@ -1,9 +1,7 @@
 package bestest.coderz.job.hunter;
 
 import android.app.Activity;
-
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+
+//import android.support.annotation.Nullable;
 
 /**
  * Created by tomislav on 23.04.15..
@@ -28,7 +28,7 @@ public class SetFilter extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Nullable
+   // @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View temp=inflater.inflate(R.layout.filteri,container,false);
