@@ -59,10 +59,22 @@ public class Options extends Fragment{
         podrucje=(Spinner)c.findViewById(R.id.spinnerpodrucje);
         lokacija=(Spinner)c.findViewById(R.id.spinnerlokacija);
 
+
         final Button searchButton= (Button) c.findViewById(R.id.buttonSearchButton);
+        searchButton.setBackgroundColor(getResources().getColor(R.color.dark_green_900_material));
+        searchButton.setTextColor(getResources().getColor(R.color.white_material));
+
         final Button createFilter= (Button) c.findViewById(R.id.buttonCreateFilter);
+        createFilter.setBackgroundColor(getResources().getColor(R.color.green_A700_material));
+        createFilter.setTextColor(getResources().getColor(R.color.white_material));
+
         final Button cancel= (Button) c.findViewById(R.id.buttonCancelFilter);
+        cancel.setBackgroundColor(getResources().getColor(R.color.green_A700_material));
+        cancel.setTextColor(getResources().getColor(R.color.white_material));
+
         final Button add= (Button) c.findViewById(R.id.buttonAddFilter);
+        add.setBackgroundColor(getResources().getColor(R.color.dark_green_900_material));
+        add.setTextColor(getResources().getColor(R.color.white_material));
 
         final EditText edt= (EditText) c.findViewById(R.id.editTextCreate);
         final EditText adresa= (EditText) c.findViewById(R.id.address);
@@ -78,7 +90,6 @@ public class Options extends Fragment{
                 toggleButtonArray=new ArrayList<ToggleButton>();
                 layoleft.removeAllViews();
                 layoright.removeAllViews();
-
 
                 for (int i = 1; i <tmp.size()+1 ; i++) {
 
@@ -152,12 +163,11 @@ public class Options extends Fragment{
                 for(int i=0;i<toggleButtonArray.size();i++)
                 {
 
-
                     if(toggleButtonArray.get(i).isChecked())
                     {
                         if(selected.length()==0){
                         selected.append(toggleButtonArray.get(i).getTextOn());
-                    }
+                        }
                         else
                         {
                             selected.append(","+toggleButtonArray.get(i).getTextOn());

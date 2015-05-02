@@ -17,21 +17,30 @@ public final class R {
     public static final class color {
         public static final int amber_material=0x7f080000;
         public static final int blue_gray_TButton_material=0x7f080001;
-        public static final int dark_green_light_material=0x7f080002;
-        public static final int dark_green_material=0x7f080003;
-        public static final int divider_material=0x7f080004;
-        public static final int light_primary_material=0x7f080005;
-        public static final int primary_text_material=0x7f080006;
-        public static final int secondary_text_material=0x7f080007;
-        public static final int white_material=0x7f080008;
+        public static final int dark_green_800_material=0x7f080002;
+        public static final int dark_green_900_material=0x7f080003;
+        public static final int dark_green_light_material=0x7f080004;
+        public static final int dark_green_material=0x7f080005;
+        public static final int divider_material=0x7f080006;
+        public static final int gray_500_material=0x7f080007;
+        public static final int green_A700_material=0x7f080008;
+        public static final int light_blue_500_material=0x7f080009;
+        public static final int light_green_200_material=0x7f08000a;
+        public static final int light_primary_material=0x7f08000b;
+        public static final int lime_900_material=0x7f08000c;
+        public static final int primary_text_material=0x7f08000d;
+        public static final int secondary_text_material=0x7f08000e;
+        public static final int teal_200_materaial=0x7f08000f;
+        public static final int white_material=0x7f080010;
     }
     public static final class dimen {
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int toggle_selector=0x7f020001;
+        public static final int header=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int toggle_selector=0x7f020002;
     }
     public static final class id {
         public static final int LinearLayoutLeftTag=0x7f0a0012;
@@ -78,6 +87,7 @@ public final class R {
         public static final int action_settings=0x7f060000;
         public static final int app_name=0x7f060001;
         public static final int hello_world=0x7f060002;
+        public static final int oglasi=0x7f060003;
     }
     public static final class style {
         /** 
@@ -86,11 +96,12 @@ public final class R {
             backward-compatibility can go here.
         
  API 11 theme customizations can go here. 
- API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f070000;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
+        public static final int CustomActionBarTheme=0x7f070002;
+        public static final int MyActionBar=0x7f070003;
     }
 }

@@ -9,4 +9,12 @@
     <color name="secondary_text_material">#727272</color>
     <color name="divider_material">#B6B6B6</color>
     <color name="blue_gray_TButton_material">#607D8B</color>
+    <color name="teal_200_materaial">#80CBC4</color>
+    <color name="light_green_200_material">#AED581</color>
+    <color name="dark_green_900_material">#1B5E20</color>
+    <color name="dark_green_800_material">#2E7D32</color>
+    <color name="gray_500_material">#9E9E9E</color>
+    <color name="light_blue_500_material">#03A9F4</color>
+    <color name="green_A700_material">#00C853</color>
+    <color name="lime_900_material">#827717</color>
 </resources>

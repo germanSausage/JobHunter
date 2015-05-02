@@ -42,7 +42,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:text="Tags"
+        android:text="Tagovi"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ScrollView
@@ -124,7 +124,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:text="Cancel"
+                android:text="Odustani"
                 android:id="@+id/buttonCancelFilter"
                 android:layout_weight="1" />
 
